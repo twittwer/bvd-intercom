@@ -1,0 +1,48 @@
+.ChannelCluster {
+    width: 100%;
+    margin: 10px;
+}
+
+.ChannelCluster > div {
+    margin: 10px 0;
+}
+
+.ChannelCluster-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.ChannelCluster-actions button{
+    margin: 0 5px;
+    border-radius: 10px;
+}
+
+.ChannelCluster-list span {
+    margin: 0 5px;
+    padding: 3px 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: grey;
+    color: white;
+}
+
+.ChannelCluster-list span.selected {
+    color: black;
+}
+
+.ChannelCluster-list.online span.selected {
+    background-color: limegreen;
+}
+
+.ChannelCluster-list.offline span.selected {
+    background-color: orangered;
+}
+
+.ChannelCluster-boxes {
+    margin: 0 auto;
+    border-spacing: 10px;
+}
+
+.ChannelCluster-boxes .ChannelBox {
+    float: left;
+}

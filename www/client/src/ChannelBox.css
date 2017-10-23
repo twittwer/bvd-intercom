@@ -1,0 +1,19 @@
+.ChannelBox {
+    margin: 15px;
+    padding: 10px;
+    border: 2px solid grey;
+}
+
+.ChannelBox-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: 5px;
+}
+
+.ChannelBox-data {
+}
+
+.ChannelBox-data-item {
+    font-size: 0.8em;
+}

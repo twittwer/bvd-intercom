@@ -1,0 +1,49 @@
+version: '3.0'
+services:
+  redis:
+    image: redis:3.0
+    ports:
+    - "6379:6379"
+
+  nginx:
+    image: nginx-plus
+    build:
+      context: ./nginx-container
+    links:
+    - www
+    - receiver
+    ports:
+    - "8080:8080"
+    volumes:
+    - ./nginx-config/nginx.conf:/etc/nginx/conf.d/nginx.conf:ro
+    - ./certs:/certs:ro
+
+  www:
+    image: node-demon
+    build:
+      context: ./node-container
+    working_dir: /bvd-intercom/www
+    command: nodemon -V -L -w ./ -w ./../shared/ --ignore ./client/ ./index.js
+    links:
+    - redis
+    ports:
+    - "4000"
+    volumes:
+    - ./:/bvd-intercom
+    environment:
+    - REDIS_HOST=redis
+
+  receiver:
+    image: node-demon
+    build:
+      context: ./node-container
+    working_dir: /bvd-intercom/receiver
+    command: nodemon -V -L -w ./ -w ./../shared/ ./index.js
+    links:
+    - redis
+    ports:
+    - "4001"
+    volumes:
+    - ./:/bvd-intercom
+    environment:
+    - REDIS_HOST=redis

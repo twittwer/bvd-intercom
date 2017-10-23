@@ -1,0 +1,10 @@
+# deps
+node_modules
+npm-debug*
+
+# builds
+build
+
+# ide
+.idea
+.vscode

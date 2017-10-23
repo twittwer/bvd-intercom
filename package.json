@@ -1,0 +1,32 @@
+{
+  "name": "bvd-intercom",
+  "version": "0.2.0",
+  "description": "Simplified BVD setup to emulate its data pipeline (receiver->webserver->client)",
+  "scripts": {
+    "postinstall": "bash -c \"npm run deps:backend:rebuild && npm run deps:frontend:install\"",
+    "deps:backend:install": "docker-compose run --no-deps --rm www npm install -q",
+    "deps:backend:rebuild": "docker-compose run --no-deps --rm www npm rebuild -q",
+    "deps:frontend:install": "cd www/client && npm install && npm run build",
+    "start": "docker-compose up --scale www=2 --scale receiver=1 -d",
+    "stop": "docker-compose down",
+    "restart": "docker-compose restart",
+    "reboot": "npm run stop && npm run start",
+    "dc:ps": "docker-compose ps",
+    "dc:logs": "docker-compose logs -f"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:twittwer/bvd-intercom.git"
+  },
+  "dependencies": {
+    "body-parser": "1.17.2",
+    "express": "4.15.3",
+    "jl-sub-server": "git+ssh://git@github.com:twittwer/jl-sub-server.git",
+    "pub-sub": "git+ssh://git@github.com:twittwer/pub-sub.git",
+    "pub-sub-transporter-redis": "git+ssh://git@github.com:twittwer/pub-sub-transporter-redis.git",
+    "redis": "2.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "1.11.0"
+  }
+}
